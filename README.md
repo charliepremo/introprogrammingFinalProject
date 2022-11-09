@@ -1,11 +1,10 @@
 # introprogrammingFinalProject
 # Curry is Him...
-
-Using Djikstra's algorithm to get enemies to pass around walls.  
+  
 
 ## Description
 
-A top down 2d game where enemies chase the player around walls.  
+A platformer where you must avoid the Lemickey to get to the end
 
 ## Getting Started
 
