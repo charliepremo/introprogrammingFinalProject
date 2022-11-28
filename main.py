@@ -11,6 +11,8 @@ import pygame as pg
 from pygame.sprite import Sprite
 import random
 from random import randint
+from settings import *
+from sprites import *
 
 # built in
 
