@@ -39,9 +39,44 @@ class Player(Sprite):
         self.pos = vec(5, 5)
         self.vel = vec(0,0)
         self.acc = vec(0,0)
-        self.health = 10
+        self.health = 5
         self.jumppower = 12
         self.jumps = 2
+        # the keys and controls of the game
+        def controls(self):
+            keys = pg.key.get_pressed()
+            # if keys[pg.K_w]:
+            #     self.acc.y = -1
+            if keys[pg.K_a]:
+                self.acc.x = -.75
+            # if keys[pg.K_s]:
+            #     self.acc.y = 1
+            if keys[pg.K_d]:
+                self.acc.x = .75
+        # how you jump
+        def jump(self):
+            self.rect.x += 1
+            hits = pg.sprite.spritecollide(self, all_plats, False)
+            self.rect.x += -1
+            # player must be on platform to jump, then has 5 double jumps until hits platform again
+            if hits:
+                self.jumps = 5
+            if self.jumps > 0:
+                self.vel.y = -self.jumppower
+                self.jumps -= 1
+                # print(self.jumps)
+    
+        def update(self):
+            self.acc = vec(0,PLAYER_GRAV)
+            self.controls()
+            # friction
+            self.acc.x += self.vel.x * -0.1
+            # self.acc.y += self.vel.y * -0.1
+            self.vel += self.acc
+            self.pos += self.vel + 0.5 * self.acc
+            # self.rect.x += self.xvel
+            # self.rect.y += self.yvel
+            self.rect.midbottom = self.pos
 
 # creates the platforms class
 class Platform(Sprite):
@@ -68,6 +103,8 @@ class Mob(Sprite):
         self.rect.x += self.speed
         if self.rect.right > WIDTH or self.rect.x < 0:
             self.speed *= -1
+
+
 
 # creates end goal
 class Goal(Sprite):
@@ -112,7 +149,7 @@ plat10 = Platform(randint(0,1400),randint(0,700),100,35)
 goal = Goal(1300,350,100,100)
 
 # puts 65 mobs in at random parts of the game
-for i in range((65)):
+for i in range((30)):
     m = Mob(randint(0,WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(),colorbyte(),colorbyte()))
     all_sprites.add(m)
     mobs.add(m)

@@ -14,6 +14,8 @@ FPS = 30
 PLAYER_GRAV = 0.8
 PLAYER_FRIC = 0.1
 
+all_plats = pg.sprite.Group()
+
 
 def controls(self):
         keys = pg.key.get_pressed()
@@ -51,4 +53,3 @@ def update(self):
             # self.rect.x += self.xvel
             # self.rect.y += self.yvel
             self.rect.midbottom = self.pos
-
