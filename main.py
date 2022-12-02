@@ -18,6 +18,21 @@ from sprites import *
 
 # built in
 
+# init pygame and create a window
+pg.init()
+pg.mixer.init()
+screen = pg.display.set_mode((WIDTH, HEIGHT))
+pg.display.set_caption("My Game...")
+clock = pg.time.Clock()
+
+def draw_text(text, size, color, x, y):
+    font_name = pg.font.match_font('arial')
+    font = pg.font.Font(font_name, size)
+    text_surface = font.render(text, True, color)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x, y)
+    screen.blit(text_surface, text_rect)
+
 # installed modules or libraries
 
 # created modules or libraries
@@ -29,6 +44,9 @@ from sprites import *
 
  # Game loop
 
+# instaniate classes
+player = Player()
+
 
 # print("Hello and Welcome to the Steph Curry is the goat game. The goal of the game is to avoid as many squares as possible and reach the end")
 # print("Rules are to have fun and avoid the squares to reach the end by any means. You must also admit Steph Curry is him and the goat point guard")
@@ -39,13 +57,6 @@ running = True
 while running:
     # keep the loop running using clock
     clock.tick(FPS)
-
-    # player moves to top of platform when player hits the platform
-    hits = pg.sprite.spritecollide(player, all_plats, False)
-    if hits:
-        # print("ive struck a plat")
-        player.pos.y = hits[0].rect.top
-        player.vel.y = 0
 
     # if player is hit by a mob the player loses one point of health and prints a message
     mobhits = pg.sprite.spritecollide(player, mobs, True)
