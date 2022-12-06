@@ -96,6 +96,13 @@ class Goal(Sprite):
     
 
 
+# init pygame and create a window
+pg.init()
+pg.mixer.init()
+screen = pg.display.set_mode((WIDTH, HEIGHT))
+pg.display.set_caption("My Game...")
+clock = pg.time.Clock()
+
 # create groups
 all_sprites = pg.sprite.Group()
 all_plats = pg.sprite.Group()
@@ -146,9 +153,5 @@ all_sprites.add(plat9)
 all_sprites.add(plat10)
 all_sprites.add(goal)
 
-# player moves to top of platform when player hits the platform
-hits = pg.sprite.spritecollide(player, all_plats, False)
-if hits:
-    # print("ive struck a plat")
-    player.pos.y = hits[0].rect.top
-    player.vel.y = 0
+# add things to their respective groups
+

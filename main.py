@@ -58,6 +58,13 @@ while running:
     # keep the loop running using clock
     clock.tick(FPS)
 
+    # player moves to top of platform when player hits the platform
+    hits = pg.sprite.spritecollide(player, all_plats, False)
+    if hits:
+        # print("ive struck a plat")
+        player.pos.y = hits[0].rect.top
+        player.vel.y = 0
+
     # if player is hit by a mob the player loses one point of health and prints a message
     mobhits = pg.sprite.spritecollide(player, mobs, True)
     if mobhits:
