@@ -56,6 +56,7 @@ class Player(Sprite):
         self.pos += self.vel + 0.5 * self.acc
         # self.rect.x += self.xvel
         # self.rect.y += self.yvel
+        
         self.rect.midbottom = self.pos
 
 # creates the platforms class

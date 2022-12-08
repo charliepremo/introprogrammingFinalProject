@@ -64,6 +64,7 @@ while running:
         # print("ive struck a plat")
         player.pos.y = hits[0].rect.top
         player.vel.y = 0
+        
 
     # if player is hit by a mob the player loses one point of health and prints a message
     mobhits = pg.sprite.spritecollide(player, mobs, True)
@@ -101,17 +102,15 @@ while running:
     pg.display.flip()
 
         # if player dies the game and loses
-    # if player.health == 0:
-    #     pg.quit()
-    #     # prints message if you lose
-    #     print("you lose your bad, also the warrios are winning the 2023 championship")
+    if player.health == 0:
+        pg.quit()
+        # prints message if you lose
+        print("you lose your bad, also the warrios are winning the 2023 championship")
         
 
-    # # if user quits the game
-    # pg.quit()
-    # #asks if user wants to play again if yes then function loops if not then the loop stops
-    # x = input ("Do you want to play again?")
-    # # prints thanks for playing if user does not say yes when asked if you want to play again
-    # print ("Thanks for playing also Steph Curry is going to win the 2023 MVP!")
-
+# if user quits the game
 pg.quit()
+# #asks if user wants to play again if yes then function loops if not then the loop stops
+# x = input ("Do you want to play again?")
+# # prints thanks for playing if user does not say yes when asked if you want to play again
+# print ("Thanks for playing also Steph Curry is going to win the 2023 MVP!")
