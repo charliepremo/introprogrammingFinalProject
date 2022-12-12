@@ -107,7 +107,7 @@ class Player(Sprite):
         # self.rect.y += self.yvel
         self.rect.midbottom = self.pos
 
-player = Player(50,40,50,50)
+player = Player(0,800,50,50)
 # player = Player()
 
 # creates the platforms class
@@ -165,7 +165,7 @@ goals = pg.sprite.Group()
 # player = Player()
 
 # places platfroms, plat 4-10 are randomly generated before every time you start
-plat = Platform(0,0,5,800)
+#
 # plat2 = Platform(1400,0,5,800)
 ground = Platform(0, HEIGHT-40, 2000, 40)
 plat4 = Platform(randint(0,1400),randint(0,700),100,35)
@@ -190,11 +190,11 @@ for i in range((35)):
 
 # add player to all sprites group
 all_sprites.add(player)
-all_plats.add(plat, ground, plat4, plat5, plat6, plat7, plat8, plat9, plat10)
+all_plats.add(ground, plat4, plat5, plat6, plat7, plat8, plat9, plat10)
 goals.add(goal)
 
 # add platform to all sprites group
-all_sprites.add(plat)
+# all_sprites.add(plat)
 # all_sprites.add(plat2)
 all_sprites.add(ground)
 all_sprites.add(plat4)
@@ -229,11 +229,13 @@ while running:
         print("I've been hit also Lemickey is worse than Jordan")
         player.health -= 1
     # if player hits the goal block, player adds one point to score
-    goalhits = pg.sprite.spritecollide(player,goals,True)
+    goalhits = pg.sprite.spritecollide(player,goals,False)
     if goalhits:
         player.score += 1
-        # player
-        # goal = Goal(1300,350,100,100)
+        player.health = 10
+        # all mobs increase in speed when player hits goal
+        for m in mobs:
+            m.speed += 2
         
     
 
