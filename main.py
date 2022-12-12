@@ -65,6 +65,7 @@ class Player(Sprite):
         self.vel = vec(0,0)
         self.acc = vec(0,0)
         self.health = 10
+        self.score = 0
         self.jumppower = 12
         self.jumps = 2
     # the keys and controls of the game
@@ -223,8 +224,8 @@ while running:
     # if player hits the goal block, player wins the game and the game ends
     goalhits = pg.sprite.spritecollide(player,goals,True)
     if goalhits:
-        Mob.speed =+ 10
-
+        player.score += 1
+    
 
     for event in pg.event.get():
         # check for closed window
@@ -242,7 +243,8 @@ while running:
     # draw the background screen
     screen.fill(BLACK)
     # draw text
-    draw_text("HEALTH: " + str(player.health), 22, WHITE, WIDTH / 2, HEIGHT / 24)
+    draw_text("HEALTH: " + str(player.health), 22, WHITE, WIDTH / 4, HEIGHT / 24)
+    draw_text("SCORE: " + str(player.score), 22, WHITE, WIDTH / 1.5, HEIGHT / 24)
     # draw all sprites
     all_sprites.draw(screen)
 
