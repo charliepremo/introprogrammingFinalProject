@@ -5,6 +5,7 @@ Get to the end of the level while avoding the enemies
 '''
 
 # sources:
+# Charlie Premo
 # content from kids can code: http://kidscancode.org/blog/
 # https://stackoverflow.com/questions/27867073/how-to-put-an-image-onto-a-sprite-pygame
 
@@ -55,12 +56,14 @@ def colorbyte():
 
 # sprites...
 class Player(Sprite):
-    def __init__(self):
+    def __init__(self,x,y,w,h):
         Sprite.__init__(self)
-        self.image = pg.Surface((50, 50))
+        self.image = pg.Surface((w,h))
         self.image.fill(GREEN)
         self.rect = self.image.get_rect()
         # self.rect.center = (WIDTH/2, HEIGHT/2)
+        self.rect.x = x
+        self.rect.y = y
         self.pos = vec(5, 5)
         self.vel = vec(0,0)
         self.acc = vec(0,0)
@@ -103,6 +106,9 @@ class Player(Sprite):
         # self.rect.x += self.xvel
         # self.rect.y += self.yvel
         self.rect.midbottom = self.pos
+
+player = Player(50,40,50,50)
+# player = Player()
 
 # creates the platforms class
 class Platform(Sprite):
@@ -156,7 +162,7 @@ mobs = pg.sprite.Group()
 goals = pg.sprite.Group()
 
 # instantiate classes
-player = Player()
+# player = Player()
 
 # places platfroms, plat 4-10 are randomly generated before every time you start
 plat = Platform(0,0,5,800)
@@ -170,11 +176,12 @@ plat8 = Platform(randint(0,1400),randint(0,700),100,35)
 plat9 = Platform(randint(0,1400),randint(0,700),100,35)
 plat10 = Platform(randint(0,1400),randint(0,700),100,35)
 
+
 # puts end goal in
 goal = Goal(1300,350,100,100)
 
-# puts 65 mobs in at random parts of the game
-for i in range((65)):
+# puts 35 mobs in at random parts of the game
+for i in range((35)):
     m = Mob(randint(0,WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(),colorbyte(),colorbyte()))
     all_sprites.add(m)
     mobs.add(m)
@@ -221,10 +228,13 @@ while running:
     if mobhits:
         print("I've been hit also Lemickey is worse than Jordan")
         player.health -= 1
-    # if player hits the goal block, player wins the game and the game ends
+    # if player hits the goal block, player adds one point to score
     goalhits = pg.sprite.spritecollide(player,goals,True)
     if goalhits:
         player.score += 1
+        # player
+        # goal = Goal(1300,350,100,100)
+        
     
 
     for event in pg.event.get():
@@ -242,7 +252,7 @@ while running:
     ############ Draw ################
     # draw the background screen
     screen.fill(BLACK)
-    # draw text
+    # puts health and score on screen
     draw_text("HEALTH: " + str(player.health), 22, WHITE, WIDTH / 4, HEIGHT / 24)
     draw_text("SCORE: " + str(player.score), 22, WHITE, WIDTH / 1.5, HEIGHT / 24)
     # draw all sprites
