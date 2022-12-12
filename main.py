@@ -107,7 +107,7 @@ class Player(Sprite):
         # self.rect.y += self.yvel
         self.rect.midbottom = self.pos
 
-player = Player(0,800,50,50)
+player = Player(50,HEIGHT-50,50,50)
 # player = Player()
 
 # creates the platforms class
@@ -165,7 +165,6 @@ goals = pg.sprite.Group()
 # player = Player()
 
 # places platfroms, plat 4-10 are randomly generated before every time you start
-#
 # plat2 = Platform(1400,0,5,800)
 ground = Platform(0, HEIGHT-40, 2000, 40)
 plat4 = Platform(randint(0,1400),randint(0,700),100,35)
