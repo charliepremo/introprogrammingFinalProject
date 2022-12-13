@@ -225,7 +225,7 @@ while running:
     mobhits = pg.sprite.spritecollide(player, mobs, True)
     if mobhits:
         print("I've been hit also Lemickey is worse than Jordan")
-        # player.health -= 1
+        player.health -= 1
     # if player hits the goal block, player adds one point to score
     goalhits = pg.sprite.spritecollide(player,goals,False)
     if goalhits:
