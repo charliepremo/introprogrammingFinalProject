@@ -107,8 +107,9 @@ class Player(Sprite):
         # self.rect.y += self.yvel
         self.rect.midbottom = self.pos
 
-player = Player(50,HEIGHT-50,50,50)
-# player = Player()
+# instansiates player class and places it bottom left of screen
+player = Player(WIDTH,HEIGHT-50,50,50)
+
 
 # creates the platforms class
 class Platform(Sprite):
@@ -130,7 +131,7 @@ class Mob(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.speed = 2
+        self.speed = 1
     def update(self):
         self.rect.x += self.speed
         if self.rect.right > WIDTH or self.rect.x < 0:
@@ -161,8 +162,6 @@ all_plats = pg.sprite.Group()
 mobs = pg.sprite.Group()
 goals = pg.sprite.Group()
 
-# instantiate classes
-# player = Player()
 
 # places platfroms, plat 4-10 are randomly generated before every time you start
 # plat2 = Platform(1400,0,5,800)
@@ -179,8 +178,8 @@ plat10 = Platform(randint(0,1400),randint(0,700),100,35)
 # puts end goal in
 goal = Goal(1300,350,100,100)
 
-# puts 35 mobs in at random parts of the game
-for i in range((35)):
+# puts 30 mobs in at random parts of the game
+for i in range((30)):
     m = Mob(randint(0,WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(),colorbyte(),colorbyte()))
     all_sprites.add(m)
     mobs.add(m)
@@ -226,15 +225,16 @@ while running:
     mobhits = pg.sprite.spritecollide(player, mobs, True)
     if mobhits:
         print("I've been hit also Lemickey is worse than Jordan")
-        player.health -= 1
+        # player.health -= 1
     # if player hits the goal block, player adds one point to score
     goalhits = pg.sprite.spritecollide(player,goals,False)
     if goalhits:
         player.score += 1
         player.health = 10
+        player.pos = (0,HEIGHT-50)
         # all mobs increase in speed when player hits goal
         for m in mobs:
-            m.speed += 2
+            m.speed += 3
         
     
 
