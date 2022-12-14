@@ -8,15 +8,19 @@ Get to the end of the level while avoding the enemies
 # Charlie Premo
 # content from kids can code: http://kidscancode.org/blog/
 # https://stackoverflow.com/questions/27867073/how-to-put-an-image-onto-a-sprite-pygame
+# friend Mason
+# friend Robert
 
 # import libraries
 import pygame as pg
 from pygame.sprite import Sprite
 import random
 from random import randint
-from settings import *
+# allows me to use math values like absolute value
+import math
 
 # built in
+from settings import *
 
 # init pygame and create a window
 pg.init()
@@ -33,24 +37,7 @@ def draw_text(text, size, color, x, y):
     text_rect.midtop = (x, y)
     screen.blit(text_surface, text_rect)
 
-# installed modules or libraries
 
-# created modules or libraries
-
-# global variables
-
-# utility variables
-
-
- # Game loop
-
-
-
-# print("Hello and Welcome to the Steph Curry is the goat game. The goal of the game is to avoid as many squares as possible and reach the end")
-# print("Rules are to have fun and avoid the squares to reach the end by any means. You must also admit Steph Curry is him and the goat point guard")
-# input ("Do you want to play the Steph Curry is the goat game?")
-# x = "yes"
-# while x == "yes":
 def colorbyte():
     return random.randint(0,255)
 
@@ -61,7 +48,6 @@ class Player(Sprite):
         self.image = pg.Surface((w,h))
         self.image.fill(GREEN)
         self.rect = self.image.get_rect()
-        # self.rect.center = (WIDTH/2, HEIGHT/2)
         self.rect.x = x
         self.rect.y = y
         self.pos = vec(5, 5)
@@ -234,7 +220,9 @@ while running:
         player.pos = (0,HEIGHT-50)
         # all mobs increase in speed when player hits goal
         for m in mobs:
-            m.speed += 3
+            # increases absolute value of mobs so all mobs increase in speed no matter direction
+            m.speed += abs(m.speed) / m.speed * 3
+            print(m.speed)
         
     
 
