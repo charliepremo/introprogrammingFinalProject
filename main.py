@@ -12,6 +12,8 @@ Get to the end of the level while avoding the enemies
 # friend Robert
 # friend Luke and Aarnav
 # friend Cade
+# friend Scotty
+# https://www.freepik.com/
 
 # import libraries
 import pygame as pg
@@ -20,9 +22,13 @@ import random
 from random import randint
 # allows me to use math values like absolute value
 import math
+import os
 
 # built in
 from settings import *
+
+game_folder = os.path.dirname(__file__)
+img_folder = os.path.join(game_folder, 'images')
 
 # init pygame and create a window
 pg.init()
@@ -130,7 +136,8 @@ class Goal(Sprite):
     def __init__(self, x, y, w, h):
         Sprite.__init__(self)
         self.image = pg.Surface((w, h))
-        self.image.fill(BLUE)
+        self.image = pg.image.load(os.path.join(img_folder, 'trophy.png')).convert()
+        self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -149,6 +156,10 @@ all_sprites = pg.sprite.Group()
 all_plats = pg.sprite.Group()
 mobs = pg.sprite.Group()
 goals = pg.sprite.Group()
+
+# background
+background = pg.image.load(os.path.join(img_folder, 'background.jpg')).convert()
+background_rect = background.get_rect()
 
 
 # places platfroms, plat 4-20 are randomly generated before every time you start
@@ -186,7 +197,7 @@ for i in range((40)):
 
 # add player to all sprites group
 all_sprites.add(player)
-all_plats.add(ground,plat4,plat5,plat6,plat7,plat8,plat9,plat10,plat11,plat12,plat12,plat14,plat15,plat16,plat17,plat18,plat19,plat20)
+all_plats.add(ground,plat4,plat5,plat6,plat7,plat8,plat9,plat10,plat11,plat12,plat13,plat14,plat15,plat16,plat17,plat18,plat19,plat20)
 goals.add(goal)
 
 # add platform to all sprites group
@@ -221,6 +232,7 @@ running = True
 while running:
     # keep the loop running using clock
     clock.tick(FPS)
+
 
     # player moves to top of platform when player hits the platform
     hits = pg.sprite.spritecollide(player, all_plats, False)
@@ -259,7 +271,8 @@ while running:
 
     ############ Draw ################
     # draw the background screen
-    screen.fill(BLACK)
+    screen.fill(WHITE)
+    screen.blit(background, (0,0))
     # puts health and score on screen
     draw_text("HEALTH: " + str(player.health), 22, WHITE, WIDTH / 4, HEIGHT / 24)
     draw_text("SCORE: " + str(player.score), 22, WHITE, WIDTH / 1.5, HEIGHT / 24)
