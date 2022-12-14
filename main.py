@@ -10,6 +10,8 @@ Get to the end of the level while avoding the enemies
 # https://stackoverflow.com/questions/27867073/how-to-put-an-image-onto-a-sprite-pygame
 # friend Mason
 # friend Robert
+# friend Luke and Aarnav
+# friend Cade
 
 # import libraries
 import pygame as pg
@@ -149,7 +151,7 @@ mobs = pg.sprite.Group()
 goals = pg.sprite.Group()
 
 
-# places platfroms, plat 4-10 are randomly generated before every time you start
+# places platfroms, plat 4-20 are randomly generated before every time you start
 # plat2 = Platform(1400,0,5,800)
 ground = Platform(0, HEIGHT-40, 2000, 40)
 plat4 = Platform(randint(0,1400),randint(0,700),100,35)
@@ -159,13 +161,23 @@ plat7 = Platform(randint(0,1400),randint(0,700),100,35)
 plat8 = Platform(randint(0,1400),randint(0,700),100,35)
 plat9 = Platform(randint(0,1400),randint(0,700),100,35)
 plat10 = Platform(randint(0,1400),randint(0,700),100,35)
+plat11 = Platform(randint(0,1400),randint(0,700),100,35)
+plat12 = Platform(randint(0,1400),randint(0,700),100,35)
+plat13 = Platform(randint(0,1400),randint(0,700),100,35)
+plat14 = Platform(randint(0,1400),randint(0,700),100,35)
+plat15 = Platform(randint(0,1400),randint(0,700),100,35)
+plat16 = Platform(randint(0,1400),randint(0,700),100,35)
+plat17 = Platform(randint(0,1400),randint(0,700),100,35)
+plat18 = Platform(randint(0,1400),randint(0,700),100,35)
+plat19 = Platform(randint(0,1400),randint(0,700),100,35)
+plat20 = Platform(randint(0,1400),randint(0,700),100,35)
 
 
 # puts end goal in
 goal = Goal(1300,350,100,100)
 
-# puts 30 mobs in at random parts of the game
-for i in range((30)):
+# puts 40 mobs in at random parts of the game
+for i in range((40)):
     m = Mob(randint(0,WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(),colorbyte(),colorbyte()))
     all_sprites.add(m)
     mobs.add(m)
@@ -174,7 +186,7 @@ for i in range((30)):
 
 # add player to all sprites group
 all_sprites.add(player)
-all_plats.add(ground, plat4, plat5, plat6, plat7, plat8, plat9, plat10)
+all_plats.add(ground,plat4,plat5,plat6,plat7,plat8,plat9,plat10,plat11,plat12,plat12,plat14,plat15,plat16,plat17,plat18,plat19,plat20)
 goals.add(goal)
 
 # add platform to all sprites group
@@ -188,6 +200,16 @@ all_sprites.add(plat7)
 all_sprites.add(plat8)
 all_sprites.add(plat9)
 all_sprites.add(plat10)
+all_sprites.add(plat11)
+all_sprites.add(plat12)
+all_sprites.add(plat13)
+all_sprites.add(plat14)
+all_sprites.add(plat15)
+all_sprites.add(plat16)
+all_sprites.add(plat17)
+all_sprites.add(plat18)
+all_sprites.add(plat19)
+all_sprites.add(plat20)
 all_sprites.add(goal)
 
 # add things to their respective groups
@@ -222,9 +244,6 @@ while running:
         for m in mobs:
             # increases absolute value of mobs so all mobs increase in speed no matter direction
             m.speed += abs(m.speed) / m.speed * 3
-            print(m.speed)
-        
-    
 
     for event in pg.event.get():
         # check for closed window
