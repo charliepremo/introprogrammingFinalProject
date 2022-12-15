@@ -63,7 +63,7 @@ class Player(Sprite):
         self.pos = vec(5, 5)
         self.vel = vec(0,0)
         self.acc = vec(0,0)
-        self.health = 10
+        self.health = 20
         self.score = 0
         self.jumppower = 12
         self.jumps = 2
@@ -169,7 +169,7 @@ background_rect = background.get_rect()
 
 # places platfroms, plat 4-20 are randomly generated before every time you start
 # plat2 = Platform(1400,0,5,800)
-ground = Platform(0, HEIGHT-40, 2000, 40)
+ground = Platform(-800, HEIGHT-40, 3500, 40)
 plat4 = Platform(randint(0,1400),randint(0,700),100,35)
 plat5 = Platform(randint(0,1400),randint(0,700),100,35)
 plat6 = Platform(randint(0,1400),randint(0,700),100,35)
@@ -193,7 +193,7 @@ plat20 = Platform(randint(0,1400),randint(0,700),100,35)
 goal = Goal(1300,randint(100,550),100,100)
 
 # puts 40 mobs in at random parts of the game
-for i in range((40)):
+for i in range((50)):
     m = Mob(randint(0,WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(),colorbyte(),colorbyte()))
     all_sprites.add(m)
     mobs.add(m)
@@ -254,7 +254,7 @@ while running:
     goalhits = pg.sprite.spritecollide(player,goals,False)
     if goalhits:
         player.score += 1
-        player.health = 10
+        # player.health = 10
         # player returns to bottom left of screen
         player.pos = (0,HEIGHT-50)
         # all mobs increase in speed when player hits goal
