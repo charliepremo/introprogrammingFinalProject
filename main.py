@@ -190,10 +190,10 @@ plat20 = Platform(randint(0,1400),randint(0,700),100,35)
 
 
 # puts end goal in
-goal = Goal(1300,randint(100,550),100,100)
+goal = Goal(1300,150,100,100)
 
-# puts 40 mobs in at random parts of the game
-for i in range((50)):
+# puts 60 mobs in at random parts of the game
+for i in range((60)):
     m = Mob(randint(0,WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(),colorbyte(),colorbyte()))
     all_sprites.add(m)
     mobs.add(m)
@@ -254,14 +254,13 @@ while running:
     goalhits = pg.sprite.spritecollide(player,goals,False)
     if goalhits:
         player.score += 1
-        # player.health = 10
         # player returns to bottom left of screen
         player.pos = (0,HEIGHT-50)
         # all mobs increase in speed when player hits goal
         for m in mobs:
             # increases absolute value of mobs so all mobs increase in speed no matter direction
-            m.speed += abs(m.speed) / m.speed * 3
-
+            m.speed += abs(m.speed) / m.speed * 2
+            
     for event in pg.event.get():
         # check for closed window
         if event.type == pg.QUIT:
