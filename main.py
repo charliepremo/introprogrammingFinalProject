@@ -14,6 +14,7 @@ Get to the end of the level while avoding the enemies
 # friend Cade
 # friend Scotty
 # https://www.freepik.com/
+# https://opengameart.org/
 
 # import libraries
 import pygame as pg
@@ -54,7 +55,8 @@ class Player(Sprite):
     def __init__(self,x,y,w,h):
         Sprite.__init__(self)
         self.image = pg.Surface((w,h))
-        self.image.fill(GREEN)
+        self.image = pg.image.load(os.path.join(img_folder, 'frog.png')).convert()
+        self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -139,6 +141,7 @@ class Goal(Sprite):
         self.image = pg.image.load(os.path.join(img_folder, 'trophy.png')).convert()
         self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
+        self.pos = vec(5,5)
         self.rect.x = x
         self.rect.y = y
     
@@ -185,7 +188,7 @@ plat20 = Platform(randint(0,1400),randint(0,700),100,35)
 
 
 # puts end goal in
-goal = Goal(1300,350,100,100)
+goal = Goal(1300,randint(100,550),100,100)
 
 # puts 40 mobs in at random parts of the game
 for i in range((40)):
@@ -244,13 +247,13 @@ while running:
     # if player is hit by a mob the player loses one point of health and prints a message
     mobhits = pg.sprite.spritecollide(player, mobs, True)
     if mobhits:
-        print("I've been hit also Lemickey is worse than Jordan")
         player.health -= 1
     # if player hits the goal block, player adds one point to score
     goalhits = pg.sprite.spritecollide(player,goals,False)
     if goalhits:
         player.score += 1
         player.health = 10
+        # player returns to bottom left of screen
         player.pos = (0,HEIGHT-50)
         # all mobs increase in speed when player hits goal
         for m in mobs:
@@ -271,7 +274,7 @@ while running:
 
     ############ Draw ################
     # draw the background screen
-    screen.fill(WHITE)
+    # screen.fill()
     screen.blit(background, (0,0))
     # puts health and score on screen
     draw_text("HEALTH: " + str(player.health), 22, WHITE, WIDTH / 4, HEIGHT / 24)
@@ -286,7 +289,7 @@ while running:
     if player.health == 0:
         pg.quit()
         # prints message if you lose
-        print("you lose your bad, also the warrios are winning the 2023 championship")
+        print("Game Over")
         
 
 # if user quits the game
