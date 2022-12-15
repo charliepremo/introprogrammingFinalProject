@@ -123,7 +123,9 @@ class Mob(Sprite):
         Sprite.__init__(self)
         self.image = pg.Surface((w, h))
         self.color = color
-        self.image.fill(color)
+        self.image.fill(WHITE)
+        self.image = pg.image.load(os.path.join(img_folder, 'redsnake.png')).convert()
+        self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
