@@ -1,10 +1,10 @@
 # introprogrammingFinalProject
-# Frantic Frog Fun...
+# Frantic Frog Frank
   
 
 ## Description
 
-A platformer where you must avoid the snakes to get to the trophy and earns points.
+A platformer where you must avoid the snakes with Frank the Wrong to get to the trophy and earns points.
 Use WASD to move and space to jump. You have 5 jumps before you need to hit a platform to restock your jumps.
 You have 20 health, every time you get hit by a snake, you lose one point of health, stay alive for as long as you can to get the highest score possible.
 
