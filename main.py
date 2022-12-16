@@ -38,6 +38,7 @@ screen = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("My Game...")
 clock = pg.time.Clock()
 
+# creates font and size for the text on screen
 def draw_text(text, size, color, x, y):
     font_name = pg.font.match_font('arial')
     font = pg.font.Font(font_name, size)
@@ -55,6 +56,7 @@ class Player(Sprite):
     def __init__(self,x,y,w,h):
         Sprite.__init__(self)
         self.image = pg.Surface((w,h))
+        # imports frog image
         self.image = pg.image.load(os.path.join(img_folder, 'frog.png')).convert()
         self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
@@ -124,11 +126,13 @@ class Mob(Sprite):
         self.image = pg.Surface((w, h))
         self.color = color
         self.image.fill(WHITE)
+        # imports redsnake picture
         self.image = pg.image.load(os.path.join(img_folder, 'redsnake.png')).convert()
         self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+        # sets initial mob speed
         self.speed = 1
     def update(self):
         self.rect.x += self.speed
@@ -168,7 +172,6 @@ background_rect = background.get_rect()
 
 
 # places platfroms, plat 4-20 are randomly generated before every time you start
-# plat2 = Platform(1400,0,5,800)
 ground = Platform(-800, HEIGHT-40, 3500, 40)
 plat4 = Platform(randint(0,1400),randint(0,700),100,35)
 plat5 = Platform(randint(0,1400),randint(0,700),100,35)
@@ -192,8 +195,8 @@ plat20 = Platform(randint(0,1400),randint(0,700),100,35)
 # puts end goal in
 goal = Goal(1300,150,100,100)
 
-# puts 60 mobs in at random parts of the game
-for i in range((60)):
+# puts 50 mobs in at random parts of the game
+for i in range((50)):
     m = Mob(randint(0,WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(),colorbyte(),colorbyte()))
     all_sprites.add(m)
     mobs.add(m)
@@ -206,8 +209,6 @@ all_plats.add(ground,plat4,plat5,plat6,plat7,plat8,plat9,plat10,plat11,plat12,pl
 goals.add(goal)
 
 # add platform to all sprites group
-# all_sprites.add(plat)
-# all_sprites.add(plat2)
 all_sprites.add(ground)
 all_sprites.add(plat4)
 all_sprites.add(plat5)
@@ -228,9 +229,6 @@ all_sprites.add(plat19)
 all_sprites.add(plat20)
 all_sprites.add(goal)
 
-# add things to their respective groups
-
-
 
 # Game loop
 running = True
@@ -242,11 +240,10 @@ while running:
     # player moves to top of platform when player hits the platform
     hits = pg.sprite.spritecollide(player, all_plats, False)
     if hits:
-        # print("ive struck a plat")
         player.pos.y = hits[0].rect.top
         player.vel.y = 0
 
-    # if player is hit by a mob the player loses one point of health and prints a message
+    # if player is hit by a mob the player loses one point of health
     mobhits = pg.sprite.spritecollide(player, mobs, True)
     if mobhits:
         player.health -= 1
@@ -254,7 +251,7 @@ while running:
     goalhits = pg.sprite.spritecollide(player,goals,False)
     if goalhits:
         player.score += 1
-        # player returns to bottom left of screen
+        # player returns to bottom left of screen when player hits goal
         player.pos = (0,HEIGHT-50)
         # all mobs increase in speed when player hits goal
         for m in mobs:
@@ -291,6 +288,7 @@ while running:
         pg.quit()
         # prints message if you lose
         print("Game Over")
+        print("Your score was " + str(player.score))
         
 
 # if user quits the game

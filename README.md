@@ -1,50 +1,37 @@
 # introprogrammingFinalProject
-# Curry is Him...
+# Frantic Frog Fun...
   
 
 ## Description
 
-A platformer where you must avoid the Lemickey to get to the end
+A platformer where you must avoid the snakes to get to the trophy and earns points.
+Use WASD to move and space to jump. You have 5 jumps before you need to hit a platform to restock your jumps.
+You have 20 health, every time you get hit by a snake, you lose one point of health, stay alive for as long as you can to get the highest score possible.
 
 ## Getting Started
+Need pygame, random, math, and os installed
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Python 3.x, Pygame, etc.
+Need pygame, random, math, and os installed
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+Download from my github 
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+Run the game file and start playing
 
 ## Authors
 
 Contributors names and contact info
 
-ex. Chris Cozort  
-ex. ccozort@bcp.org
+Charlie Premo
+charlie.premo23@bcp.org
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
 * 0.1
     * Initial Release
 
